@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-// Create axios instance with your backend URL
+
 const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL, // Your FastAPI default port
   headers: {
