@@ -1,14 +1,13 @@
 import axios from 'axios';
 
-
 const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL, // Your FastAPI default port
+  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000',
   headers: {
     'Content-Type': 'application/json',
   },
 });
 
-// Add token to requests if available
+// Request interceptor - OK
 api.interceptors.request.use((config) => {
   if (typeof window !== 'undefined') {
     const token = localStorage.getItem('token');
@@ -19,4 +18,5 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
+// NO response interceptor - we want the full Axios response
 export default api;
